@@ -1,0 +1,5 @@
+
+soofi test download: 
+python download_model.py \
+    --repo Soofi-Project/Soofi-S-Rhine-Preview-GGUF \
+    --file soofi-s-rhine-preview-Q4_K_M.gguf
