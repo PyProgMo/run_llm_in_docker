@@ -1,4 +1,5 @@
 this are the scripts to run the docker container like https://github.com/PyProgMo/c1_ROC714
+Important: llama.cpp must be installed and compiled which is available here: https://github.com/ggml-org/llama.cpp
 
 inside the container. If u have to care for cooling, run thermal_watchdog.sh as root. 
 (tweek temperature boundaries as desired. Note: for long term sustainability GPU Temp Junction should not exceed 90 °C)
@@ -12,3 +13,5 @@ This creates /workspace/models/Qwen3-14B-GGUF/ and drops the matching file(s) in
 --pattern uses glob matching, so it's the safer default — some repos split large quants into multiple parts (-00001-of-00002.gguf etc.), and a pattern like "*Q6_K*" grabs all of them, while --file only works for a single exact filename.
 Double-check the exact repo id and quant name on the model's HF page before running — quant naming conventions vary a bit between uploaders (bartowski, unsloth, etc.), and a typo in --pattern will just silently download nothing.
 If you hit a gated/private repo, pass --token or export HF_TOKEN=hf_xxx first.
+
+if the model is running: just open the OpenAI Compartible endpoint on your browser or connect it to whatever API is desired. that is it. 
