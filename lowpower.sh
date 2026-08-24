@@ -8,12 +8,10 @@ CARD_PATH="/sys/class/drm/card1/device/hwmon/hwmon2"
 TEMP_FILE="$CARD_PATH/temp2_input"      # junction/hotspot sensor — verify index matches your card
 POWER_CAP_FILE="$CARD_PATH/power1_cap"
 
-HARD_LIMIT=95000     # millidegrees C (95.0°C) — hard limit, not used in this script
 SOFT_LIMIT=85000     # millidegrees C (85.0°C) — trigger point
 RESTORE_LIMIT=72000  # millidegrees C (72.0°C) — hysteresis before restoring
 NORMAL_CAP=250000000 # µW (250W) — your normal operating cap
 THROTTLE_CAP=150000000 # µW (150W) — emergency step-down cap
-HARD_CAP=70000000 # µW (70W) — hard limit, enforce if temperature exceeds HARD_LIMIT
 POLL_INTERVAL=1      # seconds
 
 throttled=0
@@ -23,10 +21,7 @@ echo "Thermal watchdog started. Soft limit: $((SOFT_LIMIT/1000))°C, restore bel
 while true; do
   temp=$(cat "$TEMP_FILE")
 
-  if [ "$temp" -ge "$HARD_LIMIT" ]; then
-    echo "$(date '+%H:%M:%S') Junction at $((temp/1000))°C — exceeding hard limit, enforcing $((HARD_CAP/1000000))W cap"
-    echo "$HARD_CAP" > "$POWER_CAP_FILE"
-  elif [ "$temp" -ge "$SOFT_LIMIT" ] && [ "$throttled" -eq 0 ]; then
+  if [ "$temp" -ge "$SOFT_LIMIT" ] && [ "$throttled" -eq 0 ]; then
     echo "$(date '+%H:%M:%S') Junction at $((temp/1000))°C — engaging soft throttle, capping to $((THROTTLE_CAP/1000000))W"
     echo "$THROTTLE_CAP" > "$POWER_CAP_FILE"
     throttled=1
