@@ -11,6 +11,6 @@ set -euo pipefail
 
 pip install -q -U huggingface_hub hf_transfer
 
-python3 /workspace/scripts/download_model.py \
+python3 /workspace/scripts/download_models/download_model.py \
   --repo bartowski/Qwen_Qwen3.6-35B-A3B-GGUF \
   --file Qwen_Qwen3.6-35B-A3B-Q4_K_M.gguf

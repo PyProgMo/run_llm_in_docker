@@ -10,10 +10,10 @@ set -euo pipefail
 
 pip install -q -U huggingface_hub hf_transfer
 
-python3 /workspace/scripts/download_model.py \
+python3 /workspace/scripts/download_models/download_model.py \
   --repo bartowski/mistralai_Ministral-3-14B-Instruct-2512-GGUF \
   --pattern "*2512-Q6_K.gguf"
 
-python3 /workspace/scripts/download_model.py \
+python3 /workspace/scripts/download_models/download_model.py \
   --repo bartowski/mistralai_Ministral-3-14B-Instruct-2512-GGUF \
   --pattern "*2512-Q8_0.gguf"

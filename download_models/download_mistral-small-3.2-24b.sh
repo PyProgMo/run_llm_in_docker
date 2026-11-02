@@ -7,6 +7,6 @@ set -euo pipefail
 
 pip install -q -U huggingface_hub hf_transfer
 
-python3 /workspace/scripts/download_model.py \
+python3 /workspace/scripts/download_models/download_model.py \
   --repo bartowski/mistralai_Mistral-Small-3.2-24B-Instruct-2506-GGUF \
   --pattern "*2506-Q4_K_M.gguf"

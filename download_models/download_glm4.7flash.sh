@@ -13,6 +13,6 @@ set -euo pipefail
 
 pip install -q -U huggingface_hub hf_transfer
 
-python3 /workspace/scripts/download_model.py \
+python3 /workspace/scripts/download_models/download_model.py \
   --repo bartowski/zai-org_GLM-4.7-Flash-GGUF \
   --file zai-org_GLM-4.7-Flash-Q4_K_M.gguf
