@@ -11,9 +11,9 @@
 # container -- if there's free VRAM left, lower N (more layers -> GPU);
 # if it fails to load or OOMs, raise N back up.
 #
-# --no-mmap: the server warned that mmap + tensor overrides (-ncmoe)
-# adds page-fault overhead for no benefit, since the CPU-resident
-# tensors need a real copy anyway.
+# --load-mode none (was --no-mmap, removed upstream): the server warned
+# that mmap + tensor overrides (-ncmoe) adds page-fault overhead for no
+# benefit, since the CPU-resident tensors need a real copy anyway.
 #
 # --threads 8: pins CPU inference threads to the 2700X's 8 physical
 # cores. This is compute-bound matmul work, so the 8 SMT sibling
@@ -28,7 +28,7 @@ export LD_LIBRARY_PATH="/opt/rocm-venv/lib/python3.12/site-packages/_rocm_sdk_li
   --device ROCm0 \
   --gpu-layers all \
   -ncmoe 20 \
-  --no-mmap \
+  --load-mode none \
   --threads 8 \
   -c 16384 \
   --cache-type-k f16 --cache-type-v f16 \

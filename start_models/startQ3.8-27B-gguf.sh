@@ -27,7 +27,7 @@ export LD_LIBRARY_PATH="/opt/rocm-venv/lib/python3.12/site-packages/_rocm_sdk_li
   -m /workspace/models/Qwen3.8-27B-GGUF/Qwen3.8-27B-Q3_K_M.gguf \
   --device ROCm0 \
   --gpu-layers all \
-  --no-mmap \
+  --load-mode none \
   -c 32768 \
   --cache-type-k q8_0 --cache-type-v q8_0 \
   --jinja \
